@@ -1,0 +1,186 @@
+<html><head><base href="https://hack-study.com/courses">
+<title>HackEd - Course Catalog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: 'Courier New', monospace;
+    background-color: #0a0a0a;
+    color: #00ff00;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  nav {
+    background-color: #333;
+    padding: 10px;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul li {
+    margin: 0 15px;
+  }
+  nav ul li a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .course-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .course-item {
+    background-color: #1a1a1a;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #00ff00;
+    transition: transform 0.3s ease;
+  }
+  .course-item:hover {
+    transform: scale(1.02);
+  }
+  .course-title {
+    font-size: 1.2em;
+    margin-top: 0;
+  }
+  .course-description {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+  .difficulty {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+  }
+  .enroll-btn {
+    background-color: #00ff00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .enroll-btn:hover {
+    background-color: #00cc00;
+  }
+  .progress-bar {
+    background-color: #333;
+    height: 20px;
+    margin-top: 10px;
+    position: relative;
+  }
+  .progress {
+    background-color: #00ff00;
+    height: 100%;
+    width: 0;
+    transition: width 0.5s ease;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>HackEd</h1>
+    <p>Course Catalog</p>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="https://hack-study.com/">Home</a></li>
+      <li><a href="https://hack-study.com/courses">Courses</a></li>
+      <li><a href="https://hack-study.com/labs">Labs</a></li>
+      <li><a href="https://hack-study.com/tools">Tools</a></li>
+      <li><a href="https://hack-study.com/community">Community</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <h2>Available Courses</h2>
+    <ul class="course-list">
+      <li class="course-item">
+        <h3 class="course-title">Introduction to Ethical Hacking</h3>
+        <p class="course-description">Learn the basics of ethical hacking, including methodology, legal considerations, and fundamental techniques.</p>
+        <p class="difficulty">Difficulty: Beginner</p>
+        <button class="enroll-btn" data-course="intro-ethical-hacking">Enroll</button>
+        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+      </li>
+      <li class="course-item">
+        <h3 class="course-title">Network Security Fundamentals</h3>
+        <p class="course-description">Explore network protocols, vulnerability scanning, and common attack vectors in network infrastructures.</p>
+        <p class="difficulty">Difficulty: Intermediate</p>
+        <button class="enroll-btn" data-course="network-security">Enroll</button>
+        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+      </li>
+      <li class="course-item">
+        <h3 class="course-title">Web Application Penetration Testing</h3>
+        <p class="course-description">Master the techniques for identifying and exploiting vulnerabilities in web applications.</p>
+        <p class="difficulty">Difficulty: Advanced</p>
+        <button class="enroll-btn" data-course="web-app-pentesting">Enroll</button>
+        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+      </li>
+      <li class="course-item">
+        <h3 class="course-title">Wireless Network Hacking</h3>
+        <p class="course-description">Learn how to assess and secure wireless networks, including WiFi cracking and defense strategies.</p>
+        <p class="difficulty">Difficulty: Intermediate</p>
+        <button class="enroll-btn" data-course="wireless-hacking">Enroll</button>
+        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+      </li>
+      <li class="course-item">
+        <h3 class="course-title">Social Engineering Techniques</h3>
+        <p class="course-description">Understand the psychological aspects of hacking and learn how to protect against social engineering attacks.</p>
+        <p class="difficulty">Difficulty: Intermediate</p>
+        <button class="enroll-btn" data-course="social-engineering">Enroll</button>
+        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+      </li>
+    </ul>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const enrollButtons = document.querySelectorAll('.enroll-btn');
+      
+      enrollButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const courseId = button.getAttribute('data-course');
+          const progressBar = button.nextElementSibling.querySelector('.progress');
+          
+          // Simulate course enrollment and progress
+          button.textContent = 'Enrolled';
+          button.disabled = true;
+          
+          let progress = 0;
+          const progressInterval = setInterval(() => {
+            progress += 1;
+            progressBar.style.width = `${progress}%`;
+            
+            if (progress >= 100) {
+              clearInterval(progressInterval);
+              button.textContent = 'Completed';
+            }
+          }, 50);
+          
+          // In a real application, you would send an enrollment request to the server here
+          console.log(`Enrolled in course: ${courseId}`);
+        });
+      });
+    });
+  </script>
+</body></html>
